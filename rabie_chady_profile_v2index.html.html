@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rabie Chady Amin El Barzi — Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0a0908;
+  --bg2: #111009;
+  --surface: #161410;
+  --surface2: #1e1b14;
+  --surface3: #252018;
+  --gold: #c9a84c;
+  --gold-light: #e2c472;
+  --gold-dim: rgba(201,168,76,0.10);
+  --gold-border: rgba(201,168,76,0.20);
+  --text: #f0ead8;
+  --text2: #a89d80;
+  --muted: #6b6250;
+  --border: rgba(201,168,76,0.14);
+  --white: #faf8f2;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* NOISE TEXTURE OVERLAY */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.6;
+}
+
+/* GLOW BLOBS */
+.glow-1, .glow-2 {
+  position: fixed; border-radius: 50%;
+  pointer-events: none; z-index: 0; filter: blur(120px);
+}
+.glow-1 {
+  width: 600px; height: 600px;
+  top: -200px; left: -200px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+}
+.glow-2 {
+  width: 500px; height: 500px;
+  bottom: 20%; right: -150px;
+  background: radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%);
+}
+
+.wrapper {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto; padding: 0 40px;
+}
+
+/* ─── NAV ─────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 48px;
+  height: 64px;
+  background: rgba(10,9,8,0.85);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.nav-logo {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 0.2em;
+  color: var(--gold); text-transform: uppercase;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 36px; }
+nav a.nav-link {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.25s;
+  position: relative; padding-bottom: 2px;
+}
+nav a.nav-link::after {
+  content: ''; position: absolute; left: 0; bottom: -2px;
+  width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
+}
+nav a.nav-link:hover { color: var(--gold); }
+nav a.nav-link:hover::after { width: 100%; }
+
+/* ─── HERO ────────────────────────────────── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; padding: 100px 0 80px;
+  position: relative; overflow: hidden;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 0.35em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 32px;
+  display: flex; align-items: center; gap: 16px;
+  opacity: 0; animation: revealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.1s;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 48px; height: 1px; background: var(--gold); opacity: 0.6;
+}
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(58px, 9vw, 120px); font-weight: 700;
+  line-height: 0.88; letter-spacing: -0.025em;
+  color: var(--white);
+  opacity: 0; animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.25s;
+}
+.hero-name .accent {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(13px, 1.5vw, 16px); font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--text2);
+  margin-top: 32px;
+  opacity: 0; animation: revealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
+}
+.hero-contacts {
+  display: flex; flex-wrap: wrap; gap: 16px; margin-top: 52px;
+  opacity: 0; animation: revealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.55s;
+}
+.hero-contact-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 20px;
+  border: 1px solid var(--border); background: var(--surface);
+  color: var(--text2); text-decoration: none; font-size: 12px;
+  letter-spacing: 0.06em;
+  transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
+}
+.hero-contact-item:hover {
+  border-color: var(--gold); color: var(--gold);
+  background: var(--gold-dim); transform: translateY(-2px);
+}
+.hero-contact-item svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+.hero-scroll-hint {
+  position: absolute; bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  opacity: 0; animation: fadeIn 1s ease forwards 1.2s;
+}
+.scroll-line {
+  width: 1px; height: 52px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+.scroll-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.3em;
+  color: var(--muted); text-transform: uppercase;
+}
+
+/* HERO BG ORNAMENT */
+.hero-ornament {
+  position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+  width: clamp(240px, 32vw, 420px); opacity: 0.05; pointer-events: none;
+  animation: slowSpin 60s linear infinite;
+}
+
+/* ─── SECTIONS ────────────────────────────── */
+.section {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
+
+.section-header {
+  display: flex; align-items: baseline; gap: 24px; margin-bottom: 64px;
+}
+.section-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em; color: var(--gold); opacity: 0.7;
+  padding-top: 6px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 58px); font-weight: 600;
+  color: var(--white); line-height: 1; letter-spacing: -0.02em;
+}
+.section-line { flex: 1; height: 1px; background: var(--border); align-self: center; margin-left: 20px; }
+
+/* Reveal animation for sections */
+.reveal {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── PROFILE ─────────────────────────────── */
+.summary-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(19px, 2.4vw, 27px); font-weight: 400; font-style: italic;
+  line-height: 1.7; color: rgba(240,234,216,0.75);
+  max-width: 860px;
+  padding: 40px 48px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  position: relative;
+}
+.summary-text::before {
+  content: '"';
+  font-size: 120px; line-height: 1; color: var(--gold); opacity: 0.08;
+  position: absolute; top: -16px; left: 24px;
+  font-family: 'Playfair Display', serif; pointer-events: none;
+}
+.summary-text strong {
+  color: var(--gold-light); font-style: normal; font-weight: 600;
+}
+
+/* ─── SKILLS ──────────────────────────────── */
+.skills-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.skill-card {
+  background: var(--surface); padding: 32px;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+  cursor: default;
+}
+.skill-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--gold-dim), transparent 60%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.skill-card:hover { background: var(--surface2); }
+.skill-card:hover::after { opacity: 1; }
+.skill-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em; color: var(--gold);
+  margin-bottom: 16px; opacity: 0.6;
+}
+.skill-text {
+  font-size: 13px; font-weight: 400; line-height: 1.6; color: var(--text2);
+}
+.skill-card:hover .skill-text { color: var(--text); }
+
+/* ─── EXPERIENCE ──────────────────────────── */
+.experience-list { display: flex; flex-direction: column; }
+.exp-item {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 0; position: relative;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border);
+}
+.exp-item:first-child { border-top: 1px solid var(--border); }
+
+/* Vertical timeline line */
+.exp-item::before {
+  content: ''; position: absolute;
+  left: 219px; top: 0; bottom: 0;
+  width: 1px; background: var(--border);
+}
+.exp-dot {
+  position: absolute; left: 213px; top: 46px;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--gold);
+  box-shadow: 0 0 0 4px rgba(201,168,76,0.1), 0 0 12px rgba(201,168,76,0.2);
+  z-index: 2;
+}
+.exp-meta { padding: 4px 40px 0 0; }
+.exp-period {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 0.12em; color: var(--gold);
+  margin-bottom: 10px;
+}
+.exp-company {
+  font-size: 12px; color: var(--muted); line-height: 1.6; font-weight: 400;
+}
+.exp-content { padding-left: 48px; }
+.exp-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 600; color: var(--white);
+  margin-bottom: 20px; letter-spacing: -0.01em; line-height: 1.3;
+}
+.exp-tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); background: var(--gold-dim);
+  border: 1px solid var(--gold-border);
+  padding: 3px 10px; margin-bottom: 20px;
+}
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.exp-bullets li {
+  font-size: 13px; font-weight: 400; color: var(--text2);
+  padding-left: 22px; position: relative; line-height: 1.65;
+}
+.exp-bullets li::before {
+  content: ''; position: absolute; left: 0; top: 9px;
+  width: 12px; height: 1px; background: var(--gold); opacity: 0.6;
+}
+.exp-item:hover .exp-dot {
+  background: var(--gold); box-shadow: 0 0 0 4px rgba(201,168,76,0.15), 0 0 20px rgba(201,168,76,0.35);
+}
+.exp-item:hover .exp-role { color: var(--gold-light); }
+
+/* ─── EDUCATION ───────────────────────────── */
+.edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.edu-card {
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 32px 28px; position: relative; overflow: hidden;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+}
+.edu-card:hover { border-color: rgba(201,168,76,0.4); background: var(--surface2); transform: translateY(-4px); }
+.edu-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.edu-card:hover::before { opacity: 1; }
+.edu-year {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em; color: var(--gold);
+  margin-bottom: 14px;
+}
+.edu-degree {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 600; color: var(--white);
+  margin-bottom: 10px; line-height: 1.35;
+}
+.edu-school { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* CERTIFICATIONS */
+.certs-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin: 56px 0 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+.certs-title::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.cert-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.cert-item {
+  display: flex; align-items: center; gap: 20px;
+  padding: 18px 24px; background: var(--surface);
+  transition: background 0.3s;
+}
+.cert-item:hover { background: var(--surface2); }
+.cert-badge {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--gold-dim); border: 1px solid var(--gold-border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--gold); font-weight: 500; letter-spacing: 0.05em;
+}
+.cert-name { font-size: 13px; color: var(--text2); flex: 1; font-weight: 400; }
+.cert-item:hover .cert-name { color: var(--text); }
+.cert-year {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 0.15em; color: var(--gold); opacity: 0.8;
+}
+
+/* ─── LANGUAGES ───────────────────────────── */
+.lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.lang-card {
+  background: var(--surface); border: 1px solid var(--border); padding: 28px 24px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, background 0.3s;
+}
+.lang-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-4px); background: var(--surface2); }
+.lang-flag { font-size: 32px; margin-bottom: 16px; display: block; line-height: 1; }
+.lang-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 600; color: var(--white);
+  margin-bottom: 6px;
+}
+.lang-level {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase;
+}
+.lang-bar {
+  width: 100%; height: 2px; background: rgba(201,168,76,0.12);
+  margin-top: 20px; border-radius: 2px; overflow: hidden;
+}
+.lang-fill {
+  height: 100%; width: 0; border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.info-chips { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 40px; }
+.info-chip {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 18px 24px;
+}
+.chip-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.25em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 4px;
+}
+.chip-value { font-size: 13px; color: var(--text); }
+.chip-icon { font-size: 20px; }
+
+/* ─── FOOTER ──────────────────────────────── */
+.footer {
+  padding: 60px 0; text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.footer::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px; letter-spacing: 0.4em; color: var(--muted); text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.footer-contacts {
+  display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 32px;
+}
+.footer-contacts a {
+  font-size: 12px; font-weight: 400; color: var(--muted);
+  text-decoration: none; letter-spacing: 0.06em; transition: color 0.25s;
+}
+.footer-contacts a:hover { color: var(--gold); }
+.footer-location {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em; color: var(--border);
+  text-transform: uppercase;
+}
+
+/* ─── ANIMATIONS ──────────────────────────── */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.4; transform: scaleY(0.7); }
+}
+@keyframes slowSpin {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to   { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* ─── RESPONSIVE ──────────────────────────── */
+@media (max-width: 780px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .wrapper { padding: 0 24px; }
+
+  .hero { padding: 90px 0 70px; }
+  .hero-contacts { gap: 10px; }
+  .hero-contact-item { font-size: 11px; padding: 9px 14px; }
+  .hero-ornament { display: none; }
+  .hero-scroll-hint { display: none; }
+
+  .section { padding: 72px 0; }
+  .section-header { margin-bottom: 40px; }
+
+  .exp-item { grid-template-columns: 1fr; gap: 8px; }
+  .exp-item::before, .exp-dot { display: none; }
+  .exp-content { padding-left: 0; }
+  .exp-meta { padding-right: 0; }
+
+  .summary-text { padding: 28px 24px; font-size: 17px; }
+  .summary-text::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="glow-1"></div>
+<div class="glow-2"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">RCA — 2026</a>
+  <div class="nav-links">
+    <a href="#summary" class="nav-link">About</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#experience" class="nav-link">Experience</a>
+    <a href="#education" class="nav-link">Education</a>
+    <a href="#languages" class="nav-link">Languages</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="wrapper">
+    <svg class="hero-ornament" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="198" stroke="#c9a84c" stroke-width="1"/>
+      <circle cx="200" cy="200" r="150" stroke="#c9a84c" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="100" stroke="#c9a84c" stroke-width="1"/>
+      <circle cx="200" cy="200" r="50" stroke="#c9a84c" stroke-width="0.5"/>
+      <line x1="2" y1="200" x2="398" y2="200" stroke="#c9a84c" stroke-width="0.5"/>
+      <line x1="200" y1="2" x2="200" y2="398" stroke="#c9a84c" stroke-width="0.5"/>
+      <line x1="59" y1="59" x2="341" y2="341" stroke="#c9a84c" stroke-width="0.5"/>
+      <line x1="341" y1="59" x2="59" y2="341" stroke="#c9a84c" stroke-width="0.5"/>
+      <polygon points="200,50 233,140 330,140 254,196 283,286 200,232 117,286 146,196 70,140 167,140" stroke="#c9a84c" stroke-width="0.8" fill="none"/>
+      <polygon points="200,90 224,160 298,160 240,200 262,272 200,230 138,272 160,200 102,160 176,160" stroke="#c9a84c" stroke-width="0.4" fill="none"/>
+    </svg>
+
+    <p class="hero-eyebrow">Portfolio &amp; CV — Medellín, Colombia</p>
+    <h1 class="hero-name">
+      Rabie<br/>
+      <span class="accent">Chady</span>
+    </h1>
+    <p class="hero-title">Customer Service · Operations · Technology &amp; AI</p>
+
+    <div class="hero-contacts">
+      <span class="hero-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        Medellín, Colombia
+      </span>
+      <a href="tel:+573107055112" class="hero-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        +57 310 705 5112
+      </a>
+      <a href="mailto:rabiechadyamin@gmail.com" class="hero-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        rabiechadyamin@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/rabiechadyamin" target="_blank" class="hero-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/rabiechadyamin
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section class="section" id="summary">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Profile</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="summary-text reveal reveal-delay-1">
+      Trilingual professional — <strong>Spanish, English, Arabic</strong> — with
+      <strong>15+ years</strong> of experience in multichannel customer service,
+      operational business administration, and technology. Known for adaptability,
+      leadership, and a results-driven mindset across BPO, retail, logistics, and
+      healthcare environments. Combines strong interpersonal skills with proficiency in
+      <strong>modern digital tools and applied AI</strong>, consistently delivering value
+      in dynamic and fast-paced settings.
+    </p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Key Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal reveal-delay-1"><p class="skill-num">01</p><p class="skill-text">Multichannel Customer Service — phone, chat, email, videocall</p></div>
+      <div class="skill-card reveal reveal-delay-2"><p class="skill-num">02</p><p class="skill-text">Business, Warehouse Administration, Logistics &amp; Inventory Control</p></div>
+      <div class="skill-card reveal reveal-delay-3"><p class="skill-num">03</p><p class="skill-text">AI-Powered Web Apps Development — Claude Code, Cursor, Google AI Studio, Replit &amp; Figma Make</p></div>
+      <div class="skill-card reveal reveal-delay-1"><p class="skill-num">04</p><p class="skill-text">Advanced Microsoft Office 365 — Excel, Word, PowerPoint</p></div>
+      <div class="skill-card reveal reveal-delay-2"><p class="skill-num">05</p><p class="skill-text">Digital Platforms &amp; Design — Notion, Figma, Canva, Photoshop</p></div>
+      <div class="skill-card reveal reveal-delay-3"><p class="skill-num">06</p><p class="skill-text">HTML · CSS · JavaScript · Python — basic to intermediate level</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="experience-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <p class="exp-period">2025 — Present</p>
+          <p class="exp-company">Tesla MRI / Profesor X<br/>Florida, USA (Remote)</p>
+        </div>
+        <div class="exp-dot"></div>
+        <div class="exp-content">
+          <span class="exp-tag">Current Role</span>
+          <p class="exp-role">Medical Records Representative &amp; EMC Forms Specialist</p>
+          <ul class="exp-bullets">
+            <li>Managed high-volume medical records, MRI and X-ray reports with accuracy and confidentiality.</li>
+            <li>Provided personalized support to patients and referring physicians via phone, chat, and email.</li>
+            <li>Coordinated administrative tasks remotely using specialized healthcare platforms.</li>
+            <li>Ensured compliance with data privacy standards in handling of sensitive medical information.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <p class="exp-period">2023 — 2024</p>
+          <p class="exp-company">Solvo Global / Spirit Airlines<br/>Medellín, Colombia</p>
+        </div>
+        <div class="exp-dot"></div>
+        <div class="exp-content">
+          <p class="exp-role">Customer Service Representative</p>
+          <ul class="exp-bullets">
+            <li>Handled inbound multichannel support: phone calls, live chats, and email inquiries.</li>
+            <li>Resolved passenger requests and flight disruptions under BPO quality standards.</li>
+            <li>Operated CRM tools and airline reservation systems for seamless customer experiences.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <p class="exp-period">2021 — 2023</p>
+          <p class="exp-company">SportMission Agency (FIFA-certified)<br/>Medellín, Colombia</p>
+        </div>
+        <div class="exp-dot"></div>
+        <div class="exp-content">
+          <p class="exp-role">Co-Founder &amp; External Relations Director</p>
+          <ul class="exp-bullets">
+            <li>Co-founded a FIFA-certified sports agency; built strategic alliances and institutional partnerships.</li>
+            <li>Led talent scouting and negotiated professional contracts at international level.</li>
+            <li>Managed brand identity, external communications, and global network expansion.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <p class="exp-period">2018 — 2021</p>
+          <p class="exp-company">Nautica Center &amp; Tommy Hilfiger<br/>Colombia</p>
+        </div>
+        <div class="exp-dot"></div>
+        <div class="exp-content">
+          <p class="exp-role">Warehouse Administrator &amp; Store Manager</p>
+          <ul class="exp-bullets">
+            <li>Full operational oversight: staff management, finances, inventory, and store logistics.</li>
+            <li>Led warehouse logistics and inventory control; managed stock rotation and supply chain.</li>
+            <li>Drove social media sales strategy resulting in consistent revenue growth.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <p class="exp-period">2012 — 2015</p>
+          <p class="exp-company">Casa Real Comercial<br/>Colombia</p>
+        </div>
+        <div class="exp-dot"></div>
+        <div class="exp-content">
+          <p class="exp-role">Warehouse Administrator &amp; Store Manager</p>
+          <ul class="exp-bullets">
+            <li>Managed national-level logistics and inventory; coordinated transport and distribution.</li>
+            <li>Tracked incoming and outgoing merchandise with regular reporting to senior management.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <p class="exp-period">2010 — 2012</p>
+          <p class="exp-company">Tierra Santa Stores<br/>Medellín, Colombia</p>
+        </div>
+        <div class="exp-dot"></div>
+        <div class="exp-content">
+          <p class="exp-role">Cashier &amp; Warehouse Supervisor</p>
+          <ul class="exp-bullets">
+            <li>Operated cash registers and managed daily revenue with accuracy and accountability.</li>
+            <li>Oversaw warehouse stock control, logistics, and in-store customer service.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal reveal-delay-1">
+        <p class="edu-year">2019 – 2020</p>
+        <p class="edu-degree">Software Engineering (3 semesters)</p>
+        <p class="edu-school">Politecnico Grancolombiano — Bogotá</p>
+      </div>
+      <div class="edu-card reveal reveal-delay-2">
+        <p class="edu-year">2015 – 2017</p>
+        <p class="edu-degree">Instrumentation Engineering Technology</p>
+        <p class="edu-school">Northern Alberta Institute of Technology (NAIT) — Canada</p>
+      </div>
+      <div class="edu-card reveal reveal-delay-3">
+        <p class="edu-year">2015 – 2017</p>
+        <p class="edu-degree">English Language Program ESL110–EAP145 (C2 Certificate)</p>
+        <p class="edu-school">University of Alberta — Canada</p>
+      </div>
+      <div class="edu-card reveal reveal-delay-4">
+        <p class="edu-year">2007</p>
+        <p class="edu-degree">High School Diploma</p>
+        <p class="edu-school">Colegio Colombo Arabe Dar El Arkam — La Guajira</p>
+      </div>
+    </div>
+
+    <p class="certs-title reveal">Certifications</p>
+    <div class="cert-list reveal">
+      <div class="cert-item"><div class="cert-badge">G</div><span class="cert-name">Google AI Essentials — Coursera</span><span class="cert-year">2025</span></div>
+      <div class="cert-item"><div class="cert-badge">G</div><span class="cert-name">Google Digital Marketing &amp; E-Commerce — Coursera</span><span class="cert-year">2025</span></div>
+      <div class="cert-item"><div class="cert-badge">M</div><span class="cert-name">Meta Social Media Marketing — Coursera</span><span class="cert-year">2025</span></div>
+      <div class="cert-item"><div class="cert-badge">MS</div><span class="cert-name">Data for Analysis with Microsoft Excel — Coursera</span><span class="cert-year">2024</span></div>
+      <div class="cert-item"><div class="cert-badge">MS</div><span class="cert-name">Microsoft Excel — Coursera</span><span class="cert-year">2020</span></div>
+      <div class="cert-item"><div class="cert-badge">FC</div><span class="cert-name">Scientific Computing with Python — freeCodeCamp</span><span class="cert-year">2026</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="section" id="languages">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Languages</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card reveal reveal-delay-1">
+        <span class="lang-flag">🇨🇴</span>
+        <p class="lang-name">Spanish</p>
+        <p class="lang-level">Native</p>
+        <div class="lang-bar"><div class="lang-fill" data-width="100%"></div></div>
+      </div>
+      <div class="lang-card reveal reveal-delay-2">
+        <span class="lang-flag">🇬🇧</span>
+        <p class="lang-name">English</p>
+        <p class="lang-level">Advanced C2</p>
+        <div class="lang-bar"><div class="lang-fill" data-width="95%"></div></div>
+      </div>
+      <div class="lang-card reveal reveal-delay-3">
+        <span class="lang-flag">🇱🇧</span>
+        <p class="lang-name">Arabic</p>
+        <p class="lang-level">Intermediate</p>
+        <div class="lang-bar"><div class="lang-fill" data-width="60%"></div></div>
+      </div>
+      <div class="lang-card reveal reveal-delay-4">
+        <span class="lang-flag">🇫🇷</span>
+        <p class="lang-name">French</p>
+        <p class="lang-level">Basic</p>
+        <div class="lang-bar"><div class="lang-fill" data-width="25%"></div></div>
+      </div>
+    </div>
+
+    <div class="info-chips reveal" style="margin-top:40px;">
+      <div class="info-chip">
+        <span class="chip-icon">🪪</span>
+        <div>
+          <p class="chip-label">License</p>
+          <p class="chip-value">Driver's License B1</p>
+        </div>
+      </div>
+      <div class="info-chip">
+        <span class="chip-icon">💼</span>
+        <div>
+          <p class="chip-label">Status</p>
+          <p class="chip-value">Single</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrapper">
+    <p class="footer-name">Rabie Chady Amin El Barzi</p>
+    <div class="footer-contacts">
+      <a href="mailto:rabiechadyamin@gmail.com">rabiechadyamin@gmail.com</a>
+      <a href="tel:+573107055112">+57 310 705 5112</a>
+      <a href="https://linkedin.com/in/rabiechadyamin" target="_blank">LinkedIn</a>
+    </div>
+    <p class="footer-location">Medellín, Colombia · 2026</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Language bar animation
+  const langObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const fill = e.target.querySelector('.lang-fill');
+        if (fill) {
+          setTimeout(() => { fill.style.width = fill.dataset.width; }, 200);
+        }
+        langObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.lang-card').forEach(el => langObserver.observe(el));
+
+  // Nav active link highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.style.color = '');
+        const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (active) active.style.color = 'var(--gold)';
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => navObserver.observe(s));
+</script>
+</body>
+</html>
